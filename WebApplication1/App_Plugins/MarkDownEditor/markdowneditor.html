@@ -1,0 +1,26 @@
+﻿<div ng-controller="My.MarkdownEditorController">
+    
+    <text ng-model="model.value" id="search-term"></text>
+</div>
+
+<script>
+    $('#loadMoreFeeds').click(function () {
+        $.ajax({
+            url: 'https://api.github.com/search/repositories?q=' + $("#search-term").val(),
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html'
+
+        })
+        .success(function (result) {
+            //setGetParameter('c', '10');
+            $('#feeds').html(result);
+        })
+        .error(function (xhr, status) {
+            alert(status);
+        })
+
+    });
+
+    
+</script>
